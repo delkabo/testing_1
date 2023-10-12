@@ -1,0 +1,14 @@
+- name: Ping Servers
+  hosts: all
+  become: yes
+
+  tasks:
+
+  - name: Ping
+    ping:
+
+  - name: Copy File
+    copy:
+      src: ./dosomething
+      dest: /home/vagrant/somevagr
+      mode: 0777

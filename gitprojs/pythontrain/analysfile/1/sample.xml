@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+   <authorize>~/.ssh/id_rsa.pub</authorize>
+   <cpus>2</cpus>
+   <databases>
+      <element>homestead</element>
+   </databases>
+   <features>
+      <element>
+         <mariadb>false</mariadb>
+      </element>
+      <element>
+         <ohmyzsh>false</ohmyzsh>
+      </element>
+      <element>
+         <webdriver>false</webdriver>
+      </element>
+   </features>
+   <folders>
+      <element>
+         <map>~/code</map>
+         <to>/home/vagrant/code</to>
+      </element>
+   </folders>
+   <ip>192.168.10.10</ip>
+   <keys>
+      <element>~/.ssh/id_rsa</element>
+   </keys>
+   <memory>2048</memory>
+   <provider>virtualbox</provider>
+   <sites>
+      <element>
+         <map>homestead.test</map>
+         <to>/home/vagrant/code/public</to>
+      </element>
+   </sites>
+</root>

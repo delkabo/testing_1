@@ -1,0 +1,19 @@
+Huawei 111 432 3
+Huawei 111 432 6
+Huawei 111 432 9
+Huawei 111 432 12
+Huawei 111 432 15
+Cisco AA.VS 32 2
+Cisco AA.VS 32 4
+Cisco AA.VS 32 6
+Cisco AA.VS 32 8
+Cisco AA.VS 32 10
+Cisco AA.VS 32 12
+Cisco AA.VS 32 14
+Cisco AA.VS 32 16
+Cisco AA.VS 32 18
+Cisco AA.VS 32 20
+Xiaomi
+OPPO V3
+Xiaomi
+OPPO V3

@@ -1,0 +1,30 @@
+- name: Test Blocks
+  hosts: all
+  become: yes
+
+  vars:
+
+  tasks:
+
+   - block:
+      
+      - name: Install Packages
+        apt:
+          pkg:
+            - tree
+            - nmon
+            - htop
+          state: present
+
+      - name: Create Folder
+        file:
+          path: /home/ubuntu1/folderblocks
+          state: directory
+
+     when: ansible_hostname == 'ubuntu1VirtualBox'
+
+   - name: Copy File
+     copy:
+       src: file123
+       dest: /root/newfolder
+     when: ansible_hostname == 'client03'

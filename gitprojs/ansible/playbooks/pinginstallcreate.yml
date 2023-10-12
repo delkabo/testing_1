@@ -1,0 +1,28 @@
+- name: Ping Servers
+  hosts: all
+  become: yes
+
+  vars:
+    packages:
+            - apache2
+            - htop
+            - tree
+            - rsync
+
+    file_src: file2
+    file_dest: /home/ubuntu1/
+
+  tasks:
+    - name: Task ping
+      ping:
+
+    - name: Install apache2
+      apt:
+        pkg: "{{packages}}"
+        state: present
+
+    - name: Copy File
+      copy:
+        src: "{{file_src}}"
+        dest: "{{file_dest}}"
+        mode: 0777

@@ -1,0 +1,12 @@
+- name: Loops
+  hosts: all
+
+  tasks:
+
+  - name: Create Folder
+    file:
+      path: "~/{{item}}"
+      state: directory
+    loop:
+      - dir1
+      - dir2

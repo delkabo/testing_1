@@ -1,0 +1,12 @@
+[group1]
+ubuntu221
+uiptables
+
+[group2]
+proj1
+proj2
+
+
+[all_groups:children]
+group1
+group2

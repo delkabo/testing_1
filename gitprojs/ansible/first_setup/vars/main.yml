@@ -1,0 +1,19 @@
+---
+# vars file for first_setup
+
+
+    packages:
+      - apt-transport-https
+      - bash-completion
+      - ca-certificated
+      - curl
+      - dnsultils
+      - ncdu
+      - net-tools
+      - nmon
+      - pwgen
+      - apache2
+      - default-mysql-server
+
+    new_hostname: hostnameRole  
+

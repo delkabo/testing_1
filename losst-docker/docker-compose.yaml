@@ -1,0 +1,62 @@
+version: '3.5'
+services:
+  docker-nginx:
+    image: nginx
+    # depends_on:
+    #  - docker-php-fpm
+    # links:
+    #   - docker-php-fpm
+    # volumes_from:
+    #  - docker-php-fpm
+    ports:
+      - '8094:80'
+    volumes:
+      - ./:/var/www
+      - ./nginx/:/etc/nginx/conf.d
+      - ./logs/nginx:/var/log/nginx
+      # - ./nginx/site.conf:/etc/nginx/conf.d/default.conf
+      - ./:/usr/share/nginx/html
+    networks:
+     - losst-network
+  docker-mariadb:
+    image: mariadb
+    volumes:
+      - ./losst-vl:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=database
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
+    networks:
+      - losst-network
+  docker-phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    ports:
+      - "8095:80"
+    environment:
+      - PMA_HOST=docker-mariadb
+    networks:
+      - losst-network
+  docker-php-fpm:
+    # image: php:fpm
+    # container_name: docker-php-fpm
+    image: php:8.2-fpm-alpine
+    # build: ./php-fpm
+    #   # context: ./php-fpm
+    volumes:
+      # - ./:/var/www/html
+      -  ./:/usr/share/nginx/html
+      - ./www.conf:/usr/local/etc/php-fpm.d/www.conf
+      # - ./www.conf:/usr/local/etc/php-fpm.conf
+    restart: always
+    # links:
+    #   - docker-mariadb
+    # expose:
+    #   - "9000"
+    # ports:
+    #  - "9000:9000"
+    networks:
+      - losst-network
+
+networks:
+  losst-network:

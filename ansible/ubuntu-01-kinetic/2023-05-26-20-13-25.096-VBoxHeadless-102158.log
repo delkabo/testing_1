@@ -1,0 +1,12 @@
+Log created: 2023-05-26T20:13:25.962951000Z
+Process ID:  102158 (0x18f0e)
+Parent PID:  923 (0x39b)
+Executable:  /usr/lib/virtualbox/VBoxHeadless
+Arg[0]: /usr/lib/virtualbox/VBoxHeadless
+Arg[1]: --comment
+Arg[2]: ubuntu_01_kinetic_default_1685120482749_81065
+Arg[3]: --startvm
+Arg[4]: 6b403e0e-096e-4b4d-9da3-0ca0d41cc0c7
+Arg[5]: --vrde
+Arg[6]: config
+AddRef: illegal refcnt=3221225469 state=2

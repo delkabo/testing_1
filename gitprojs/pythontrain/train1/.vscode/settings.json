@@ -1,0 +1,8 @@
+{
+    "yaml.schemas": {
+        "https://raw.githubusercontent.com/ansible-community/schemas/main/f/ansible.json#/$defs/playbook": [
+            "file:///home/kamil/docs/ansible/play1.yml"
+        ],
+        "https://json.schemastore.org/yamllint.json": "file:///home/kamil/docs/ansible/test_playbook.yml"
+    }
+}

@@ -1,0 +1,10 @@
+[group1]
+clientu01 ansible_host=192.168.56.4 ansible_user=root ansible_ssh_private_key_file=/home/delkabo/.ssh/clientu01
+[group2]
+clientu02 ansible_host=192.168.56.2 ansible_user=root ansible_ssh_private_key_file=/home/delkabo/.ssh/clientu02
+[group3]
+clientu03 ansible_host=192.168.56.3 ansible_user=root ansible_ssh_private_key_file=/home/delkabo/.ssh/clientu03
+
+[all_groups:children]
+group2
+group3
