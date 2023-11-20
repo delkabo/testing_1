@@ -1,6 +1,6 @@
 from  typing import Union
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Cookie, Response
 from fastapi.responses import FileResponse
 from models.models import User
 from models.models import Feedback
@@ -87,11 +87,22 @@ def get_product_search(product_id: int):
 # limit
 
 # Конечная точка получения информации
+
+@app.get("/user/response"):
+    def root (response: Response):
+        response.set_cookie(key="user", value=user_id)
+        return {"mesage": "Welcome"}
+@router.post("login", status_code=200)
+async def login_user(response: Response):
+    name = 
+    return {"message": "Добро пожаловать"}
+
 @app.get("/users/{user_id}")
 def read_user(user_id: int):
     if user_id in fake_users:
         return fake_users[user_id]
     return{"error": "User not found"}
+    else
 
 @app.get("/users/")
 def read_users(limit: int=10):
