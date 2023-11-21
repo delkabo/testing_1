@@ -1,6 +1,6 @@
 from  typing import Union
 
-from fastapi import FastAPI, Cookie, Response
+from fastapi import FastAPI, Request, Response
 from fastapi.responses import FileResponse
 from models.models import User
 from models.models import Feedback
@@ -88,21 +88,47 @@ def get_product_search(product_id: int):
 
 # Конечная точка получения информации
 
-@app.get("/user/response"):
-    def root (response: Response):
-        response.set_cookie(key="user", value=user_id)
-        return {"mesage": "Welcome"}
-@router.post("login", status_code=200)
-async def login_user(response: Response):
-    name = 
-    return {"message": "Добро пожаловать"}
+
+# задача создать маршрут в систему логин
+
+dbuser = [
+    {
+        "username":"johndoe",
+        "password":"123456",
+        "session_token": None
+    },
+    {
+        "username":"janedoe",
+        "password":"654321",
+        "session_token": None
+    }
+]
+@app.post("/login_1")
+async def login_user(user: User, response: Response):
+    for u in dbuser:
+        if u["username"] == user.username and u["password"] == user.password:
+            token = str(random.randint(100, 999))
+            u["session_token"] = token
+            response.set_cookie(key="session_token", value=token)
+            return {"message": "Login successful"}
+    return {"message": "Invalid credentinals"}
+
+@app.get("/user")
+async def user(request: Request):
+    session_token = request.cookies.get("session_token")
+    for u in dbuser:
+        if u["session_token"] == request.cookies.get("session_token") is not None:
+            return {"username": u["username"]}
+        return {"message": "Invalid session"}
+
+# ---------
 
 @app.get("/users/{user_id}")
 def read_user(user_id: int):
     if user_id in fake_users:
         return fake_users[user_id]
     return{"error": "User not found"}
-    else
+
 
 @app.get("/users/")
 def read_users(limit: int=10):
