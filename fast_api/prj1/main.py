@@ -1,19 +1,39 @@
-from  typing import Union
+from  typing import Union, Annotated
+import jwt
 
-from fastapi import FastAPI, Request, Response
+from fastapi import FastAPI, Request, Response, HTTPException, Depends, status
 from fastapi.responses import FileResponse
 from models.models import User
 from models.models import Feedback
 from models.models import UserCreate
 from models.models import SampleProducts
+from fastapi.security import HTTPBasic, HTTPBasicCredentials
 
 # user = User(name="John Doe", id=1) #1
+
+security = HTTPBasic()
 
 app = FastAPI()
 
 lst = []
 
 users: list[UserCreate] = []
+
+
+
+USER_DATA = [
+User(**{"username": "user2", "password": "pass2"}),
+User(**{"username": "user1", "password": "pass1"}),
+User(**{"username": "user3", "password": "pass3"})
+]
+
+
+
+# USER_DATA = {
+# 1: {"username": "user1", "password": "pass1"},
+# 2: {"username": "user2", "password": "pass2"}
+# }
+
 
 fake_users = {
     1: {"username": "john_doe", "email": "john@example.com"},
@@ -55,8 +75,76 @@ sample_product_5 = {
     "price": 299.99
 }
 
+# 4.2 Аутентификация на основе JWT
+SECRET_KEY= 'mysectretkey'
+def create_jwt_token(data: dict):
+    # Функция для создания JWT токена
+    return jwt.encode(data, SECRET_KEY, algorithm=ALGORITHM) # кодируем токен, передавая в него наш словарь с тем, что мы хотим там разместить
+# Функция получения User'а по токену
+def get_user_from_token(token: str):
+    try:
+        payload = jwt.decode(token, SECRET_KEY,algorithms=[ALGORITHM]) # декодируем токен
+        return payload.get("sub")
+    except jwt.ExpiredSignatureError:
+        pass # тут какая-то логика ошибки истечения срока действия токена
+    except jwt.InvalidTokenError:
+        pass # тут какая-то логика обработки ошибки декодирования токена
+   
+# Функция для получения пользовательских данных на основе имени пользователя
+def get_user(username: str):
+    for user in USER_DATA:
+        if user.get("username") == username:
+            return user
+    return None
+
+# закодируем токен, внеся в него словарь с утверждением о пользователе
+token = create_jwt_token({'sub': 'admin'})
+
+print(token)
+
 sample_products = [sample_product_1, sample_product_2, sample_product_3, sample_product_4, sample_product_5]
 
+# декодируем токен и излечем из него информацию о юзере, которую мы туда зашили
+username = get_user_from_token(token)
+
+prin(username) # посмотрим, что возвращается то, что ожидаем
+
+current_user = get_user(username) # и теперь пойдем в нашу базу данных искать такого юзера по юзернейму
+
+print(current_user)  # удостоверимся, что нашелся тот, кто нужен
+
+# 4.2 Аутентификация на основе JWT конец
+
+# 4.1 задача логин с защищенной аунтефикацией
+# @app.get("/login_security/")
+
+
+
+# def authenticate_user(credentials: Annotated[HTTPBasicCredentials, Depends(security)]):
+#     return {"username": credentials.username, "password": credentials.password}
+
+
+def authenticate_user(credentials: HTTPBasicCredentials = Depends(security)):
+# def authenticate_user(credentials: Annotated[HTTPBasicCredentials, Depends(security)]):
+        user = get_user_from_db(credentials.username)
+        if user is None or user.password != credentials.password:
+            # return USER_DATA
+            raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid credentials")
+        return user
+
+
+def get_user_from_db(username: str):
+    for user in USER_DATA:
+        if user.username == username:
+            return user
+    return None
+
+@app.get("/protected_resource/")
+def get_protected_resource(user: User = Depends(authenticate_user)):
+    return {"message": "You got my secret, welcome", "user_info": user}
+
+
+# конец 4.1 задача логин
 
 @app.get("/product/{product_id}")
 def get_product_id(product_id: int):

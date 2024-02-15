@@ -3,9 +3,13 @@ from typing import Any, List, Union
 from pydantic import BaseModel
 
 class User(BaseModel):
-    name: str
-    id: int
-    is_adult: bool
+    username: str
+    password: str
+    #id: int
+    #is_adult: bool
+
+# USER_DATA = [User(**{"username": "user1", "password": "pass1"}), \
+# User(**{"username": "user2", "password": "pass2"})]
 
 class Feedback(BaseModel):
     name: str
