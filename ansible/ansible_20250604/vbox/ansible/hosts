@@ -1,0 +1,13 @@
+[group1]
+vagrub1
+
+[group2]
+vagrub2 ansible_host=192.168.56.22
+
+[group3]
+vagrub3 ansible_host=192.168.56.23
+#vagrub4 ansible_host=192.168.56.24 ansible_user=vagrant
+
+[all_groups:children]
+group2
+group3

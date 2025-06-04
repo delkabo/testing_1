@@ -1,0 +1,22 @@
+- name: Png Servers
+  hosts: all
+  become: yes
+
+  tasks:
+
+  - name: Task ping
+    ping:
+
+  - name: Update cache
+    apt:
+      update_cache: yes
+
+  - name: Install apache2
+    apt:
+      pkg: apache2
+      state: present
+  - name: copy file
+    copy:
+      src: ./file111
+      dest: /home/
+      mode: 0777

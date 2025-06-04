@@ -1,3 +1,6 @@
 *.mp3
 ubuntutables
 losst-vl
+*.vdi
+*.vmdk
+

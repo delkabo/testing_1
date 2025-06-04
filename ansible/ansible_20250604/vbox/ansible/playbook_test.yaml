@@ -1,0 +1,14 @@
+- hosts: all
+# Проверка занятости дисков
+  tasks:
+    - name:
+      command: df -h
+      register: storage
+    - debug: var=storage.stdout_lines
+# Статус system_d
+    - name: Make sure systemd-resolved.service unit is running
+      ansible.builtin.systemd:
+        state: started
+        name: systemd-resolved.service
+    - debug: var=ansible_memory_mb
+    - debug: msg="total RAM is {{ ansible_memory_mb.real.total }}"
