@@ -10,11 +10,33 @@ import wave
 import soundfile as sf
 import contextlib
 import sys
-
+import logging
 sys.path.append('/usr/bin')
 
 re=[]
 musics_dir='musics'
+
+l = logging.getLogger("pydub.converter")
+l.setLevel(logging.DEBUG)
+l.addHandler(logging.StreamHandler())
+
+def get_sec(give_time):
+    give_time=str(give_time)
+    if len(give_time) <= 2:
+        dur_m = int(''.join(give_time))
+    elif len(give_time) <= 5:
+        dur_m = int(''.join(give_time.split(':')[:1]))
+        dur_s = int(''.join(give_time.split(':')[1:]))
+        delta = timedelta(minutes=dur_m, seconds=dur_s)
+        seconds = delta.total_seconds()
+        return seconds
+    else:
+        dur_h = int(''.join(give_time.split(':')[:1]))
+        dur_m = int(''.join(give_time.split(':')[1:-1]))
+        dur_s = int(''.join(give_time.split(':')[2:]))
+        delta = timedelta(hours=dur_h, minutes=dur_m, seconds=dur_s)
+        seconds = delta.total_seconds()
+        return seconds
 
 def edit_text():
 #####################
@@ -135,7 +157,7 @@ def edit_text():
         lines = file_t.read().splitlines()
         data_info_playlist = lines[-1]
     time_code_prew = '-'.join(data_info_playlist.split(' ')[:+1]).strip()
-    time_code_end = "6:59:59"
+    time_code_end = duration
     time_text_prew = ' '.join(line.split(' ')[1:]).strip()
     re.append({
             'time_code_start': time_code_prew,
@@ -149,17 +171,77 @@ def edit_text():
     if not os.path.exists(musics_dir):
         os.makedirs(musics_dir)
 
-    music_long = AudioSegment.from_file('file.mp3', format='mp3')
-    a = AudioSegment.from_mp3(new_name) 
+    # music_long = AudioSegment.from_file('file.mp3', format='mp3')
+    # a = AudioSegment.from_mp3(new_name) 
+    # all_music = AudioSegment.from_file(new_name) 
+    all_music = AudioSegment.from_mp3(new_name)
+    print(f'all_music :: {all_music}')
     # short_music = music_long[:10000]
     # short_music.export('data/charp1.mp3', format='mp3')
 
     # first_second = a[:1000] # get the first second of an mp3 
-    slice = a[5000:10000] # get a slice from 5 to 10 seconds of an mp3
-    slice.export('musics/charp1.mp3', format='mp3')
-    duration = int(info_mp3.frames / info_mp3.samplerate)
-    print(f"Длительность: {duration} сек")
+    # slice = all_music[0000:120000] # get a slice from 5 to 10 seconds of an mp3
+    # slice.export('musics/0000.mp3', format='mp3')
+    # duration = int(info_mp3.frames / info_mp3.samplerate)
+    # print(f"Длительность: {duration} сек")
 
+    print("Длительность в формате %H:%M:%S ", duration)
+    
+    x=0
+    for mus_t in re:
+        print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+        x+=1
+        # 'time_code_start': time_code_prew,
+        # 'time_code_end': duration,
+        # 'time_text': time_text_prew
+        time_code_start = mus_t["time_code_start"]
+        print(f'hms: {time_code_start}')
+        # print(f'time_code_start raw: {type(time_code_start)} {time_code_start}')
+        time_code_end = mus_t['time_code_end']
+        print(f'hms: {time_code_end}')
+        # print(f'time_code_end raw: {type(time_code_start)} {time_code_end}')
+        time_text = mus_t['time_text']
+        if time_code_start != 0:
+            time_code_start = get_sec(time_code_start)
+            time_code_start = (int(time_code_start)*1000)+999
+            print(f'time_code_start after *1000+999: {time_code_start}')
+        # print(f'time_code_start: {type(time_code_start)} {time_code_start}')
+        time_code_end = get_sec(time_code_end)
+        if time_code_end != get_sec(duration):
+            time_code_end = (int(time_code_end)*1000)+999
+        else:
+            time_code_end = int(time_code_end)*1000
+        print(f'time_code_end after *1000+999: {time_code_end}')
+        # Разделить песню на более мелкие куски и соединить
+        print(f'time_text: {time_text}')
+
+        slice = all_music[time_code_start:time_code_end]
+        # # Проверка на повторы
+        while True:
+            time_text_j = ''.join([time_text,'.mp3'])
+            # for root, dirs, files in os.walk('musics/'): # root, dirs
+                # print(f'type {files[2]} ------------------------- files: {files}')
+            files = os.listdir('musics/')
+            if f"{time_text}.mp3" not in files:
+                break
+            else:
+                print(f'Такое название уже есть {time_text}')
+                time_text = ''.join([time_text,' -1'])
+
+                # if time_text_j in files:
+                #     print(f'filessssssssssssssssss: {time_text_j}')
+                #     time_text = ''.join([time_text,'-1'])
+                # else:
+                #     print(f'_____+++++++++++++++___________++++++++++++ {x}')
+                
+        
+        print(f'time_text after: {time_text}')
+        slice.export(f"musics/{time_text}.mp3", format='mp3')
+
+        time.sleep(1)
+       
+    # print("Длительность в формате %S ", seconds)
+    print(f'duration {get_sec(duration)}. type: {type(duration)}++++++++++++++++++++++++++++++')
 def print_array():
     # print(re)
     for x1 in re:
@@ -169,7 +251,7 @@ def print_array():
 
 def main():
     edit_text()
-    print_array()
+    # print_array()
 
 
 if __name__ == '__main__':
