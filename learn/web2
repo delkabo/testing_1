@@ -1,0 +1,175 @@
+    1  apt list apache2 libapache-mod-php
+    2  apt list apache2 libapache2-mod-php
+    3  apt list apache2 libapache2-mod-php
+    4  apt list install libapache2-mod-php
+    5  apt install libapache2-mod-php
+    6  nano /etc/apache2/sites-available/course-lab.ru.conf
+    7  sudo nano /etc/apache2/apache2.conf 
+    8  mkdir -p /var/www/course-lab.ru/html
+    9  chown -R astra:astra /var/www/course-lab.ru
+   10  chmod -R 755 /var/www/course-lab.ru
+   11  nano /var/www/course-lab.ru/html/hostname.php
+   12  sudo a2dissite 000-default.conf
+   13  a2ensite course-lab.ru.conf
+   14  systemctl reload apache2
+   15  apt install bash-comletion
+   16  apt search bash-comletion
+   17  apt search bash-coml
+   18  apt search bash-co
+   19  apt install bash-completion
+   20  a2dissite 000-default.conf
+   21  a2ensite course-lab.ru.conf
+   22  systemctl reload apache2
+   23  exit
+   24  ip a
+   25  systemctl restart apache2
+   26  a2query --help
+   27  a2ensite course-lab.ru.conf
+   28  a2ensite course-lab.ru.conqw
+   29  nano /etc/apache2/sites-available/course-lab.ru.conf
+   30  systemctl restart apache2
+   31  sudo nano /etc/apache2/apache2.conf 
+   32  nano /etc/apache2/sites-available/course-lab.ru.conf
+   33  systemctl restart apache2
+   34  apachectl configtest course-lab.ru.conf
+   35  apachectl --help
+   36  apachectl -h
+   37  apachectl -h | grep "config"
+   38  apachectl -h | less
+   39  apachectl -h | less
+   40  apachectl -t course-lab.ru.conf
+   41  apache2ctl -t course-lab.ru.conf
+   42  apache2ctl configtest course-lab.ru.conf
+   43  apache2ctl configtest 
+   44  nano /etc/apache2/sites-available/course-lab.ru.conf
+   45  systemctl restart apache
+   46  systemctl restart apache2
+   47  systemctl restart apache2
+   48  nano /etc/apache2/apache2.conf 
+   49  systemctl restart apache2
+   50  systemctl enable apache2
+   51  systemctl restart apache2
+   52   /var/www/course-lab.ru/html/hostname.php
+   53  history | grep "a2dissite"
+   54  nano /var/log/apache2/error.log 
+   55  ip rule list 
+   56  apt install -y drdb-utils
+   57  apt install -y drbd-utils
+   58  nano /etc/drbd.d/wwwdata.res
+   59  drbdadm create-md wwwdata
+   60  drbdadm up wwwdata 
+   61  drbdadm up wwwdata 
+   62  drbdadm down wwwdata 
+   63  drbdadm [A
+   64  nano /etc/drbd.d/wwwdata.res
+   65  drbdadm --help
+   66  man drbdadm
+   67  drbdadm detach wwwdata 
+   68  drbdadm create-md wwwdata
+   69  drbdadm up wwwdata 
+   70  watch -n 1 cat /proc/drbd 
+   71  drbdadm status
+   72  ls -ald /var/www/
+   73  rm -r /var/www/
+   74  watch -n 1 cat /proc/drbd
+   75  ls -al /var/www/
+   76  watch -n 1 cat /proc/drbd
+   77  df -hT
+   78  lsblk 
+   79  drbdadm up wwwdata 
+   80  drbdadm create-md wwwdata
+   81  drbdadm down wwwdata 
+   82  drbdadm up wwwdata 
+   83  drbdadm status
+   84  drbdadm status
+   85  lsblk 
+   86  poweroff 
+   87  drbdadm status
+   88  drbdadm up wwwdata 
+   89  drbdadm status
+   90  drbdadm status
+   91  drbdadm status
+   92  drbdadm status
+   93  drbdadm status
+   94  drbdadm -- --overwrite-data-of-peer primary all
+   95  mount /dev/drbd1 /var/www
+   96  umount /var/www 
+   97  drbdadm secondary wwwdata 
+   98  drbdadm status
+   99  drbdadm status
+  100  drbdadm status
+  101  ls -al /var/www/
+  102  drbdadm status
+  103  mount /dev/drbd1 /var/www
+  104  drbdadm status drbd1
+  105  drbdadm status /dev/drbd1
+  106  nano /etc/drbd.d/wwwdata.res 
+  107  drbdadm -- --overwrite-data-of-peer primary all
+  108  drbdadm status drbd1
+  109  drbdadm status wwwdata 
+  110  drbdadm status
+  111  mount /dev/drbd1 /var/www/
+  112  ls /var/www/
+  113  umount /var/www 
+  114  drbdadm secondary wwwdata 
+  115  drbdadm status
+  116  adduser ceph-adm
+  117  echo "ceph-adm ALL = (root) NOPASSWD:ALL" | tee /etc/sudoers.d/ceph-adm
+  118  pdpl-user -i 63 ceph-adm
+  119  chmod 0440 /etc/sudoers.d/ceph-adm
+  120  rbd map disk1 --name client.admin -m 192.168.100.7 -k /etc/ceph/ceph.client.admin.keyring -p one
+  121  mkdir /mnt/ceph-block-device
+  122  mount /dev/rbd0 /mnt/ceph-block-device/
+  123  ls /mnt/ceph-block-device/
+  124  poweroff 
+  125  mount -t ceph 192.168.100.6,192.168.100.7,192.168.100.8:/ /mnt -o name=client1,secret=AQB0pElp9UWdEhAABmCAHMg8AwE/3a1g69gRRg==
+  126  ls -al /mnt/ceph-block-device/
+  127  ceph status 
+  128  mount -t ceph 192.168.100.6,192.168.100.7,192.168.100.8:/ /mnt -o name=client1,secret=AQB0pElp9UWdEhAABmCAHMg8AwE/3a1g69gRRg==
+  129  ls -al /mnt/ceph-block-device/
+  130  mkdir /mnt/cephfs
+  131  mount -t ceph 192.168.100.6,192.168.100.7,192.168.100.8:/ /mnt/cephfs -o name=client1,secret='AQD6sElp775zFxAA8PkmKk3jlQrEZpRTFCGRXg=='
+  132  ls -al /mnt/cephfs/data1/
+  133  echo "/mnt/cephfs/data1/course-lab-2.ru/html/index.html"
+  134  apt install pacemaker
+  135  apt install -y pcs
+  136  passwd hacluster
+  137  rm -r /var/www/course-lab.ru/html/*
+  138  df -hT
+  139  ls -al /var/www/
+  140  cat /etc/apache2/sites-available/course-lab.ru.conf 
+  141  nano /etc/apt/sources.list
+  142  apt update
+  143  pcs cluster stop --all
+  144  apt install -y sbd
+  145  systemctl enable rbdmap.service
+  146  reboot -i
+  147  history 
+  148  nano /etc/modules-load.d/modules.conf 
+  149  nano /etc/default/sbd 
+  150  lsmod | grep softdog
+  151  modprobe softdog
+  152  lsmod | grep softdog
+  153  systemctl restart corosync.service 
+  154  pcs cluster start --all
+  155  systemctl status sbd
+  156  pcs stonith create SBD-Fencing fence_sbd devices=/dev/rbd0 method=onoff
+  157  apt install -y corosync-qdevice
+  158  apt install -y dlm-controld gfs2-utils
+  159  pcs status 
+  160  pcs status 
+  161  rbd status 
+  162  pcs status 
+  163  lsmod | grep softdog
+  164  update-initramfs -u
+  165  apt install ceph-resource-agents
+  166  systemctl status apache2
+  167  ls -al /var/www/course-lab.ru/html/hostname.php 
+  168  a2enconf 
+  169  a2query 
+  170  apache2ctl -V | grep SERVER_CONFIG_FILE
+  171  apache2ctl status 
+  172  apache2ctl -V
+  173  nano /etc/apache2/sites-available/course-lab.ru.conf
+  174  clear
+  175  history 

@@ -1,0 +1,67 @@
+    1  nano /etc/haproxy/haproxy.cfg 
+    2  systemctl enable haproxy
+    3  systemctl restart haproxy
+    4  nano /etc/haproxy/haproxy.cfg 
+    5  systemctl restart haproxy
+    6  nano /etc/haproxy/haproxy.cfg 
+    7  nano haproxy,cfg
+    8  nano /etc/haproxy/haproxy.cfg 
+    9  systemctl restart haproxy
+   10  nano /etc/haproxy/haproxy.cfg 
+   11  apt install bash-copletion
+   12  apt install bash-completion
+   13  exit
+   14  systemctl status haproxy.service 
+   15  systemctl status haproxy.service 
+   16  journalctl -xeu haproxy
+   17  nano /etc/haproxy/haproxy.cfg 
+   18  systemctl restart haproxy
+   19  journalctl -xeu haproxy
+   20  journalctl -xeu haproxy | less
+   21  nano /etc/haproxy/haproxy.cfg 
+   22  systemctl restart haproxy
+   23  nano /etc/haproxy/haproxy.cfg 
+   24  systemctl restart haproxy
+   25  journalctl -xeu haproxy | less
+   26  journalctl -xeu haproxy | less
+   27  nano /etc/haproxy/haproxy.cfg 
+   28  ping 192.198.100.4
+   29  curl -I 192.198.100.4:80
+   30  curl -I 192.198.100.4/hostname.php
+   31  curl -I 192.198.100.5/hostname.php
+   32  curl -I http://192.198.100.5/hostname.php
+   33  curl -I http://192.198.100.5:80/hostname.php
+   34  curl -I http://192.198.100.5/
+   35  curl -A http://192.198.100.5/
+   36  journalctl -xeu haproxy | less
+   37  haproxy --help
+   38  haproxy -V
+   39  curl -I http://192.198.100.5/hostname.php
+   40  curl -I ya.ru
+   41  curl -I web1.course-lab.ru/hostname.php
+   42  curl -I web2.course-lab.ru/hostname.php
+   43  traceroute 192.168.100.5
+   44  traceroute 192.168.100.4
+   45  systemctl restart haproxy
+   46  systemctl restart haproxy
+   47  journalctl -xeu haproxy | less
+   48  nano /etc/haproxy/haproxy.cfg 
+   49  systemctl restart haproxy
+   50  traceroute 192.168.100.4
+   51  traceroute 192.168.100.5
+   52  nano /etc/haproxy/haproxy.cfg 
+   53  nano /etc/haproxy/haproxy.cfg 
+   54  journalctl -xeu haproxy | less
+   55  systemctl restart haproxy
+   56  ip route 192.168.100.5
+   57  ip route 192.168.100.5:80
+   58  ip route get 192.168.100.5
+   59  ip route get 192.168.100.4
+   60  nano /etc/haproxy/haproxy.cfg 
+   61  systemctl restart haproxy
+   62  apt install keepalived -y
+   63  sudo nano /etc/keepalived/keepalived.conf
+   64  systemctl restart haproxy keepalived.service 
+   65  journalctl -xeu keepalided
+   66  systemctl status keepalived.service 
+   67  history

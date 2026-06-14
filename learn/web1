@@ -1,0 +1,500 @@
+ 100  nano /etc/drbd.d/wwwdata.res
+  101  drbdadm create-md wwwdata
+  102  watch cat /proc/drbd 
+  103  drbdadm up wwwdata 
+  104  watch cat /proc/drbd 
+  105  drbdadm primary --force wwwdata
+  106  drbdadm status
+  107  mkfs.ext4 /dev/drbd1
+  108  drbdadm status
+  109  cp -r /var/www/ .
+  110  ls
+  111  rm -r /var/www/
+  112  ls -al
+  113  ls -al /var/
+  114  mkdir -m 755 /var/www
+  115  chown root:root /var/www/
+  116  ls -ald /var/www/
+  117  mount /dev/drbd1 /var/www/
+  118  drbdadm status
+  119  watch -n 1 /proc/drb
+  120  watch -n 1 cat /proc/drbd 
+  121  cp -r www/* /var/www/
+  122  watch -n 1 cat /proc/drbd 
+  123  drbdadm status
+  124  drbdadm status
+  125  drbdadm status
+  126  ls -al /var/
+  127  ls -al /var/www/
+  128  df -h
+  129  drbdadm status
+  130  drbdadm status
+  131  drbdadm status
+  132  watch -n 1 drbdadm status
+  133  poweroff 
+  134  watch -n 1 drbdadm status
+  135  drbdadm up wwwdata 
+  136  drbdadm -- --overwrite-data-of-peer primary all
+  137  drbdadm status
+  138  drbdadm status
+  139  ls -al /var/www/
+  140  mount /dev/drbd1 /var/www/
+  141  ls -al /var/www/
+  142  drbdadm status
+  143  drbdadm status
+  144  drbdadm status
+  145  ls -al /var/www/
+  146  drbdadm status
+  147  drbdadm status
+  148  drbdadm status
+  149  ls -al /var/www/
+  150  ls -al /var/www/
+  151  history | grep mount
+  152  nano /etc/drbd.d/wwwdata.res 
+  153  lsblk 
+  154  poweroff 
+  155  drbdadm up wwwdata 
+  156  drbdadm -- --overwrite-data-of-peer primary all
+  157  drbdadm status
+  158  mount /dev/drbd /var/www/
+  159  mount /dev/drbd /var/www
+  160  drbdadm status
+  161  drbdadm status
+  162  mount /dev/drbd /var/www
+  163  mount /dev/drbd1 /var/www
+  164  adduser ceph-adm
+  165  echo "ceph-adm ALL = (root) NOPASSWD:ALL" | tee /etc/sudoers.d/ceph-adm
+  166  pdpl-user -i 63 ceph-adm
+  167  chmod 0440 /etc/sudoers.d/ceph-adm 
+  168  rbd create disk1 --size 1024 --image-feature layering -m 192.168.100.7 -k /etc/ceph/ceph.client.admin.keyring -p one
+  169  rdb map disk1 --name client.admin -m 192.168.100.7 -k /etc/ceph/ceph.client.admin.keyring -p one
+  170  rbd map disk1 --name client.admin -m 192.168.100.7 -k /etc/ceph/ceph.client.admin.keyring -p one
+  171  mkfs.ext4 -m0 /dev/rbd0
+  172  mkdir /mnt/ceph-block-device
+  173  mount /dev/rbd0 /mnt/ceph-block-device
+  174  chown -R astra:astra /mnt/ceph-block-device/
+  175  chown -R 755 /mnt/ceph-block-device/
+  176  echo "hello from web1" > /mnt/ceph-block-device/test_from_web1.txt
+  177  ls -al /mnt/
+  178  ls -al /mnt/ceph-block-device/
+  179  poweroff 
+  180  mount -t ceph 192.168.100.6,192.168.100.7,192.168.100.8:/ /mnt -o name=client1,secret=AQB0pElp9UWdEhAABmCAHMg8AwE/3a1g69gRRg==
+  181  mount -t ceph 192.168.100.6,192.168.100.7,192.168.100.8:/ /mnt -o name=client1,secret=AQB0pElp9UWdEhAABmCAHMg8AwE/3a1g69gRRg==
+  182  ls -l /mnt/ceph-block-device/
+  183  mount -t ceph 192.168.100.6,192.168.100.7,192.168.100.8:/ /mnt -o name=client1,secret=AQB0pElp9UWdEhAABmCAHMg8AwE/3a1g69gRRg==
+  184  ceph status 
+  185  ip a
+  186  mkdir /mnt/cephfs
+  187  mount -t ceph 192.168.100.6,192.168.100.7,192.168.100.8:/ /mnt/ceph -o name=client1,secret=AQB0pElp9UWdEhAABmCAHMg8AwE/3a1g69gRRg==
+  188  mount -t ceph 192.168.100.6,192.168.100.7,192.168.100.8:/ /mnt/cephfs -o name=client1,secret=AQB0pElp9UWdEhAABmCAHMg8AwE/3a1g69gRRg==
+  189  ls -al /mnt/
+  190  ls -al /mnt/ceph-block-device/
+  191  mount -t ceph 192.168.100.6,192.168.100.7,192.168.100.8:/ /mnt/cephfs -o name=client1,secret=AQB0pElp9UWdEhAABmCAHMg8AwE/3a1g69gRRg==
+  192  mount -t ceph 192.168.100.6,192.168.100.7,192.168.100.8:/ /mnt/cephfs -o name=client1,secret='AQB0pElp9UWdEhAABmCAHMg8AwE/3a1g69gRRg=='
+  193  mount -t ceph 192.168.100.6,192.168.100.7,192.168.100.8:/ /mnt/cephfs -o name=client1,secret='AQD6sElp775zFxAA8PkmKk3jlQrEZpRTFCGRXg=='
+  194  ls -al /mnt/cephfs/data1/
+  195  mkdir -p /mnt/cephfs/data1/course-lab-2.ru/html
+  196  chown -R astra:astra /mnt/cephfs/data1/course-lab-2.ru
+  197  chmod -R 755 /mnt/cephfs/data1/course-lab-2.ru
+  198  sudo nano /mnt/cephfs/data1/course-lab-2.ru/html/index.html
+  199  cat /etc/apache2/sites-available/course-lab.ru.conf 
+  200  nano /etc/apache2/sites-available/course-lab-2.ru.conf 
+  201  a2dissite course-lab.ru.conf 
+  202  a2ensite course-lab-2.ru.conf 
+  203  systemctl reload apache2.service 
+  204  nano /etc/apache2/sites-available/course-lab-2.ru.conf 
+  205  systemctl reload apache2.service 
+  206  apachectl config
+  207  apachectl -t 
+  208  nano /etc/apache2/sites-available/course-lab-2.ru.conf 
+  209  systemctl reload apache2.service 
+  210  systemctl status apache
+  211  systemctl status apache2.service 
+  212  apt install -y pacemaker
+  213  apt install -y pcs
+  214  passwd hacluster 
+  215  pcs cluster destroy
+  216  pcs host auth web1.course-lab.ru web2.course-lab.ru -u hacluster -p P@ssw0rd
+  217  pcs cluster setup astracluster web1.course-lab.ru web2.course-lab.ru --force
+  218  pcs cluster enable --all
+  219  pcs cluster start --all
+  220  pcs status 
+  221  pcs cluster enable --all
+  222  pcs status 
+  223  pacemakerd --features
+  224  pcs property set stonith-enabled=false
+  225  pcspcs resource create ClusterIP osf:heartbeat:IPaddr2 ip=192.168.100.20 cidr_netmask=32 op monitor interval=30s
+  226  pcs resource create ClusterIP osf:heartbeat:IPaddr2 ip=192.168.100.20 cidr_netmask=32 op monitor interval=30s
+  227  pcs resource create ClusterIP ocf:heartbeat:IPaddr2 ip=192.168.100.20 cidr_netmask=32 op monitor interval=30s
+  228  pcs resource list
+  229  pcs resource standards 
+  230  pcs resource providers 
+  231  pcs resource create WebSite ocf:heartbeat:apache configfile/etc/apache2/apache2.conf op monitor interval=1m
+  232  pcs resource create WebSite ocf:heartbeat:apache configfile=/etc/apache2/apache2.conf op monitor interval=1m
+  233  pcs constraint colocation add WebSite with ClusterIP INFINITY
+  234  pcs condtraint order ClusterIP then WebSite
+  235  pcs constraint order ClusterIP then WebSite
+  236  pcs constraint location WebSite prefers web1.course-lab.ru=100
+  237  pcs constraint location WebSite prefers web2.course-lab.ru=50
+  238  pcs cluster cib drbd_cfg
+  239  pcs -f drbd_cfg resource create WebData ocf:linbit:drbd drbd_resource=wwwdata op monitor interval=30s
+  240  pcs -f drbd_cfg resource promotable WebData promoted-max=1 promoted-node-max=1 nclone-max=2 clone-node-max=1 notify=true
+  241  pcs cluster cib-push drbd_cfg --config
+  242  pcs cluster cib fs_cfg
+  243  pcs -f fs_cfg constraint colocation add WebFS with WebData-clone INFINITY with-rsc-role=Master
+  244  pcs -f fs_cfg resource create WebFS Filesystem device="/dev/drbd1" directory="/var/www" fstype="ext4"
+  245  pcs -f fs_cfg constraint colocation add WebFS with WebData-clone INFINITY with-rsc-role=Master
+  246  pcs -f fs_cfg constraint order promote WebData-clone then start WebFS
+  247  pcs -f fs_cfg constraint colocation add WebSite with WebFS INFINITY
+  248  pcs -f fs_cfg constraint order WebFS then WebSIte
+  249  pcs -f fs_cfg constraint order WebFS then WebSite
+  250  pcs cluster cib-push fs_cfg --config
+  251  pcs resource status
+  252  rm -r /var/www/course-lab.ru/html/*
+  253  nano /var/www/course-lab.ru/html/index.html
+  254  pcs node standby web1.course-lab.ru
+  255  pcs node status
+  256  pcs status node
+  257  pcs status
+  258  pcs node unstandby web1.course-lab.ru
+  259  pcs status
+  260  pcs host auth web1.course-lab.ru web2.course-lab.ru web3.course-lab.ru -u hacluster -p P@ssw0rd
+  261  pcs cluster setup astracluster web1.course-lab.ru web2.course-lab.ru web3-course-lab.ru --force
+  262  pcs cluster setup astracluster web1.course-lab.ru web2.course-lab.ru web3.course-lab.ru --force
+  263  pcs cluster start --all
+  264  pcs cluster enable --all
+  265  pcs status 
+  266  nano /etc/apt/sources.list
+  267  nano /etc/apt/sources.list
+  268  apt update
+  269  nano /etc/apt/sources.list
+  270  apt update
+  271  curl -I http://deb.debian.org/debian
+  272  nano /etc/apt/sources.list
+  273  apt update
+  274  nano /etc/apt/sources.list
+  275  pcs cluster stop --all
+  276  apt install -y sbd
+  277  rbd create sbd-disk --size 1024 --image-feature layering -m 192.168.100.7 -k /etc/ceph/ceph.client.admin.keyring -p one
+  278  nano /etc/ceph/rbdmap 
+  279  systemctl enable rbdmap.service
+  280  for x in {1..3}; do ssh astra@web$x sudo reboot; done
+  281  pkill -9 37286
+  282  ps aux | grep mount
+  283  htop
+  284  kill 37286
+  285  pgrep mou
+  286  kill -9 37286
+  287  exit
+  288  exit
+  289  systemctl status  sbd
+  290  systemctl list-dependencies sbd
+  291  journalctl -xeu systemd-modules-load
+  292  systemctl list-dependencies sbd
+  293  systemctl list-dependencies systemd-modules-load.service
+  294  journalctl -xeu systemd-modules-load
+  295  nano /etc/default/sbd 
+  296  history | grep sbd 
+  297  history 
+  298  nano /etc/ceph/rbdmap 
+  299  nano /etc/modules-load.d/modules.conf 
+  300  nano /etc/default/sbd 
+  301  pcs cluster --all
+  302  pcs cluster start --all
+  303  systemctl status sbd
+  304  systemctl restart sbd
+  305  systemctl start sbd
+  306  systemctl status sbd
+  307  nano /etc/modules-load.d/modules.conf 
+  308  modprobe softdog 
+  309  lsmod | grep softdog
+  310  systemctl restart corosync.service 
+  311  pcs cluster start -all
+  312  pcs cluster start --all
+  313  systemctl status sbd
+  314  pcs stonith create SBD-Fencing fence_sbd devices=/dev/rbd0 method=onoff
+  315  pcs property set stonith-enabled=true
+  316  pcs status 
+  317  apt install -y corosync-qdevice 
+  318  systemctl status pcsd.service 
+  319  dpkg -S /lib/systemd/system/pcsd.service
+  320  history | grep "pcs host auth"
+  321  pcs node attribute
+  322  crm_mon -1
+  323  dpkg -L /usr/sbin/corosync-qdevice-net-certutil
+  324  dpkg -S /usr/sbin/corosync-qdevice-net-certutil
+  325  echo pcs host auth ha1.course-lab.ru -u hacluster -p P@ssw0rd
+  326  pcs host auth ha1.course-lab.ru -u hacluster -p P@ssw0rd
+  327  pcs quorum device add model net host=ha1.course-lab.ru algorithm=ffsplit
+  328  pcs resource create ClusterIP ocf:heartbeat:IPaddr2 ip=192.168.100.20 cidr_netmask=32 op monitor interval=30s
+  329  pcs status 
+  330  pcs status 
+  331  apt install -y dlm-controld gfs2-utils 
+  332  pcs cluster cib dlm_cfg
+  333  pcs -f dlm_cfg resource create DLM ocf:pacemaker:controld op monitor interval=60s
+  334  pcs -f dlm_cfg resource clone DLM clone-max=3 clone-node-max=1
+  335  pcs cluster cib push dlm_cfg --config
+  336  pcs resource status
+  337  pcs cluster cib-push dlm_cfg --config
+  338  pcs resource status
+  339  pcs resource status
+  340  rdb map disk1 --name client.admin -k /etc/ceph/ceph.client.admin.keyring -p one
+  341  rbd map disk1 --name client.admin -k /etc/ceph/ceph.client.admin.keyring -p one
+  342  mkfs.gfs2 -p lock_dlm -j 3 -t astracluster:web /dev/rbd1
+  343  mount /dev/rbd1 /var/www/
+  344  ps aux | grep mount
+  345  htop
+  346  nano /etc/fstab
+  347  ps aux | mount
+  348  ps aux | grep mount
+  349  systemctl reboot -i
+  350  history 
+  351  rbd map disk1 --name client.admin -k /etc/ceph/ceph.client.admin.keyring -p one
+  352  mkfs.gfs2 -p lock_dlm -j 3 -t astracluster:web /dev/rbd1
+  353  mount /dev/rbd1 /var/www
+  354  ls -al /dev/rbd1
+  355  mount /dev/rbd1 /var/www
+  356  mount /dev/rbd1 /var/www
+  357  mkdir /tmp/mount
+  358  mount /dev/rbd1 /tmp/mount/
+  359  pcs resource status
+  360  systemctl status corosync
+  361  systemctl status pacemaker
+  362  systemctl status pcsd.service 
+  363  systemctl start pacemaker.service 
+  364  journalctl -xeu pacemaker
+  365  journalctl -xeu pacemaker
+  366  man systemctl
+  367  systemctl list-dependencies pacemaker.service 
+  368  systemctl status sbd.service
+  369  systemctl list-dependencies sbd.service
+  370  nano /var/log/pacemaker/pacemaker.log 
+  371  nano /etc/modules-load.d/modules.conf 
+  372  modprobe softdog 
+  373  systemctl start pacemaker.service ls
+  374  ls -al /dev/watchdog
+  375  ls -al /dev/watchdog0
+  376  ls -al /etc/modules-load.d/
+  377  echo "softdog" | tee /etc/modules-load.d/softdog.conf
+  378  mount /dev/rbd1 /tmp/mount/
+  379  pcs status 
+  380  pcs status | grep dlm
+  381  mount -t gfs2 -v -o lockproto=lock_dlm /dev/rbd1 /var/www
+  382  mount -v  /dev/rbd1 /var/www
+  383  lsmod | grep softdog
+  384  rbd status 
+  385  history | grep map
+  386  rbd map disk1 --name client.admin -k /etc/ceph/ceph.client.admin.keyring -p one
+  387  rbd status 
+  388  rbd showmapped 
+  389  blkid /dev/rbd1
+  390  blkid /dev/rbd2
+  391  rbd unmap /dev/rbd2
+  392  rbd showmapped 
+  393  rbd status 
+  394  rbd showmapped 
+  395  gfs2_edit sb /dev/rbd1
+  396  gfs2_edit sb /dev/rbd1 | head -n 20
+  397  q
+  398  exit
+  399  rbd showmapped 
+  400  history 
+  401  lsmod | grep softdog
+  402  modprobe softdog
+  403  lsmod | grep softdog
+  404  pcs cluster start -all
+  405  systemctl status pacemaker
+  406  systemctl start pacemaker
+  407  systemctl status pacemaker
+  408  systemctl enable pacemaker
+  409  pcs cluster start -all
+  410  pcs cluster start --all
+  411  history 
+  412  history | grep dlm
+  413  pcs cluster cib dlm_cfg
+  414  pcs -f dlm_cfg resource create dlm ocf:pacemaker:controld op monitor interval=60s
+  415  pcs -f dlm_cfg resource clone dlm clone-max=3 clone-node-max=1
+  416  pcs cluster cib push dlm_cfg --config
+  417  mkfs.gfs2 -p lock_dlm -j 3 -t astracluster:web /dev/rbd1
+  418  rdb map disk1 --name client.admin -k /etc/ceph/ceph.client.admin.keyring -p one
+  419  rbd map disk1 --name client.admin -k /etc/ceph/ceph.client.admin.keyring -p one
+  420  mkfs.gfs2 -p lock_dlm -j 3 -t astracluster:web /dev/rbd1
+  421  gfs2_edit  sb /dev/rbd1 | grep -i "locktale\|uuid"
+  422  gfs2_edit  sb /dev/rbd1
+  423  dlm_tool ls
+  424  dlm_tool 
+  425  dlm_tool -s
+  426  dlm_tool ls 
+  427  dlm_tool ls status
+  428  dlm_tool astracluster:web
+  429  dlm_tool newlockspace astracluster:web
+  430  dlm_tool ls
+  431  systemctl status dlm_cfg 
+  432  mount /dev/rbd1 /var/www/
+  433  mount /dev/rbd1 /var/www
+  434  lsmod | grep softdog
+  435  systemctl status corosync
+  436  systemctl status pacemaker
+  437  systemctl status pcsd
+  438  mount /dev/rbd1 /var/www
+  439  systemctl status pcsd
+  440  systemctl status pacemaker
+  441  mount /dev/rbd1 /var/www
+  442  modprobe softdog
+  443  mount /dev/rbd1 /var/www
+  444  mount /dev/rbd1 /var/www
+  445  rbd map disk1 --name client.admin -k /etc/ceph/ceph.client.admin.keyring -p one
+  446  history | grep unmap
+  447  rbd unmap /dev/rbd2
+  448  history | disk1
+  449  history | grep disk1
+  450  rbd map disk1 --name client.admin -k /etc/ceph/ceph.client.admin.keyring -p one
+  451  rbd unmap /dev/rbd2
+  452  pcs resource status
+  453  systemctl status dlm_cfg 
+  454  pcs resource status dlm 
+  455  pcs resource dlm 
+  456  pcs status dlm 
+  457  pcs status
+  458  pcs status
+  459  history | grep pcs
+  460  pcs cluster start --all
+  461  mount /dev/rbd1 /var/www
+  462  systemctl restart corosync pacemaker pcsd
+  463  mount /dev/rbd1 /var/www
+  464  lsmod | grep softdog
+  465  history | grep mkfs
+  466  mkfs.gfs2 -p lock_dlm -j 3 -t astracluster:web /dev/rbd1
+  467  mount /dev/rbd1 /var/www
+  468  mkdir -p /var/www/course-lab.ru/html
+  469  ls -al /var/www
+  470  ls -ald /var/www/
+  471  history | grep chmod
+  472  chmod -R 755 /var/www/course-lab.ru
+  473  history | grep chow
+  474  chown -R astra:astra /var/www/course-lab.ru
+  475  apt list libapache2-mod-php
+  476  nano /var/www/course-lab.ru/html/hostname.php
+  477  ls -al
+  478  nano /var/www/course-lab.ru/html/hostname.php
+  479  umount /var/www
+  480  rbd unmap /dev/rbd1
+  481  apt list bash completion
+  482  pcs cluster cib MAP-RBD_cfg
+  483  pcs -f MAP-RBD_CFG resource create MAP-RBD ocf:ceph:rbd name=disk1 pool=one cephconf=/etc/ceph/ceph.conf op monitor interval=30s
+  484  update-initramfs 
+  485  update-initramfs -u
+  486  apt update
+  487  pcs resource standarts
+  488  pcs resource standards
+  489  pcs resource providers
+  490  pcs resource agents ocf:ceph
+  491  pcs status
+  492  find /usr/lib/ocf/resource.d -type f | grep -i ceph
+  493  dpkg -l | grep -E "(ceph|pacemaker|resource.*agent)"
+  494  apt install ceph-resource-agents
+  495  pcs -f MAP-RBD_CFG resource create MAP-RBD ocf:ceph:rbd name=disk1 pool=one cephconf=/etc/ceph/ceph.conf op monitor interval=30s
+  496  exit
+  497  pcs -f MAP-RBD_cfg resource clone MAP-RBD clone-max=2 clone-node-max=1
+  498  pcs status 
+  499  history 
+  500  pcs -f MAP-RBD_cfg resource create MAP-RBD ocf:ceph:rbd name=disk1 pool=one cephconf=/etc/ceph/ceph.conf op monitor interval=30s
+  501  pcs -f MAP-RBD_cfg resource create MAP-RBD ocf:ceph:rbd name=disk1 pool=one cephconf=/etc/ceph/ceph.conf op monitor interval=30s
+  502  pcs resource delete MAP-RBD
+  503  pcs resource status
+  504  pcs resource delete MAP-RBD_cfg 
+  505  pcs resource delete MAP-RBD
+  506  pcs config 
+  507  pcs config | grep MAP
+  508  history | grep MAP
+  509  pcs cluster cib MAP-RBD_cfg
+  510  pcs -f MAP-RBD_cfg resource create MAP-RBD ocf:ceph:rbd name=disk1 pool=one cephconf=/etc/ceph/ceph.conf op monitor interval=30s
+  511  pcs -f MAP-RBD_cfg resource clone MAP-RBD clone-max=2 clone-node-max=1
+  512  pcs cluster cib-push MAP-RBD_cfg --config
+  513  pcs constraint colocation add MAP-RBD-clone with DLM-clone
+  514  pcs constraint colocation add MAP-RBD-clone with dlm-clone
+  515  pcs constraint order dlm-clone then MAP-RBD-clone
+  516  pcs cluster cib MOUNT-RBD_cfg
+  517  pcs -f MOUNT-RBD_cfg resource create MOUNT-RBD ocf:heartbeat:Filesystem device=/dev/rbd1 directory=/var/www fstype=gfs2 op monitor interval=30s
+  518  pcs -f MOUNT-RBD_cfg resource clone MOUNT-RBD clone-max=2 clone-node-max=1
+  519  pcs cluster cib push MOUNT-RBD_cfg --config
+  520  pcs constraint order MAP-RBD-clone then MOUNT-RBD-clone
+  521  history 
+  522  pcs constraint order MAP-RBD-clone then MOUNT-RBD-clone
+  523  pcs constraint colocation add MOUNT-RBD-clone with MAP-RBD-clone
+  524  pcs -f MOUNT-RBD_cfg resource clone MOUNT-RBD clone-max=2 clone-node-max=1
+  525  pcs constraint colocation add MOUNT-RBD-clone with MAP-RBD-clone
+  526  pcs -f MOUNT-RBD_cfg resource clone MOUNT-RBD clone-max=2 clone-node-max=1
+  527  pcs status 
+  528  pcs config
+  529  pcs config | grep MOUNT
+  530  pcs config | grep MAP
+  531  pcs -f MOUNT-RBD_cfg resource clone MOUNT-RBD clone-max=2 clone-node-max=1
+  532  systemctl status pacemaker
+  533  pcs status 
+  534  systemctl status corosync pacemaker
+  535  pcs resource status
+  536  pcs -f MOUNT-RBD_cfg resource clone MOUNT-RBD clone-max=2 clone-node-max=1
+  537  pcs status 
+  538  pcs -f MOUNT-RBD_cfg resource clone MOUNT-RBD clone-max=2 clone-node-max=1
+  539  pcs resource cleanup DLM
+  540  pcs -f MOUNT-RBD_cfg resource clone MOUNT-RBD clone-max=2 clone-node-max=1
+  541  pcs status 
+  542  pcs constraint colocation add MOUNT-RBD-clone with MAP-RBD-clone
+  543  pcs -f MOUNT-RBD_cfg resource clone MOUNT-RBD clone-max=2 clone-node-max=1
+  544  pcs status | grep MOUNT-RBD
+  545  history | grep resource
+  546  history | grep "resource create"
+  547  pcs -f MOUNT-RBD_cfg resource create MOUNT-RBD ocf:heartbeat:Filesystem device=/dev/rbd1 directory=/var/www fstype=gfs2 op monitor interval=30s
+  548  pcs cluster stop --all
+  549  pcs cluster start --all
+  550  pcs -f MOUNT-RBD_cfg resource create MOUNT-RBD ocf:heartbeat:Filesystem device=/dev/rbd1 directory=/var/www fstype=gfs2 op monitor interval=30s
+  551  history | grep cib
+  552  pcs cluster cib push MOUNT-RBD_cfg --config
+  553  pcs -f MOUNT-RBD_cfg resource create MOUNT-RBD ocf:heartbeat:Filesystem device=/dev/rbd1 directory=/var/www fstype=gfs2 op monitor interval=30s
+  554  pcs cluster 
+  555  pcs status 
+  556  pcs -f MOUNT-RBD_cfg resource create MOUNT-RBD ocf:heartbeat:Filesystem device=/dev/rbd1 directory=/var/www fstype=gfs2 op monitor interval=30s
+  557  pcs cluster cib MOUNT-RBD_cfg 
+  558  pcs -f MOUNT-RBD_cfg resource create MOUNT-RBD ocf:heartbeat:Filesystem device=/dev/rbd1 directory=/var/www fstype=gfs2 op monitor interval=30s
+  559  pcs -f MOUNT-RBD_cfg resource clone MOUNT-RBD clone-max=2 clone-node-max=1
+  560  pcs status 
+  561  pcs cluster cib-push MOUNT-RBD_cfg --config
+  562  history | MAP-RBD-clone
+  563  history | grep MAP-RBD-clone
+  564  pcs constraint colocation add MOUNT-RBD-clone with MAP-RBD-clone
+  565  pcs constraint order MAP-RBD-clone then MOUNT-RBD-clone
+  566  pcs resource create WebSite ocf:heartbeat:apache configfile=/etc/apache2/apache2.conf op monitor interval=1min
+  567  pcs resource clone WebSite clone-max=2 clone-node-max=1
+  568  pcs constraint colocation add WebSite-clone with MOUNT-RBD-clone
+  569  pcs constraint order MOUNT-RBD-clone then WebSite-clone
+  570  pcs constraint colocation add ClusterIP with WebSite-clone
+  571  pcs constraint order WebSite-clone then ClusterIP
+  572  pcs node standby web2.course-lab.ru
+  573  ls -al /var/www/course-lab.ru/html/hostname.php 
+  574  nano /etc/apache2/apache2.conf 
+  575  nano /etc/apache2/sites-available/course-lab.ru.conf 
+  576  ls -al /var/www/course-lab.ru/html/hostname.php 
+  577  ls -al /var/www/course-lab.ru/
+  578  ls -al /var/www/
+  579  systemctl status apache2
+  580  systemctl start apache2
+  581  systemctl status apache2
+  582  pcs status 
+  583  pcs node unstandby web2.course-lab.ru
+  584  a2dissite course-lab-2.ru.conf 
+  585  a2ensite course-lab.ru.conf 
+  586  systemctl reload apache2
+  587  pcs node standby web2.course-lab.ru
+  588  pcs node unstandby web2.course-lab.ru
+  589  apache2ctl -V | grep SERVER_CONFIG_FILE
+  590  apache2ctl -V
+  591  nano /etc/apache2/sites-available/course-lab.ru.conf 
+  592  ip a
+  593  pcs node standby web2.course-lab.ru
+  594  pcs status 
+  595  pcs node unstandby web2.course-lab.ru
+  596  history | xsel -b -i
+  597  history
+  598  clear
+  599  history

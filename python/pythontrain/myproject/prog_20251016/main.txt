@@ -34,20 +34,13 @@ def clicked():
         # lbl2 = Label(window, text="Текст появился")
         # lbl2.grid(column=0, row=1)
         if lbl2.winfo_exists():
-            print("Кнопка lbl2 появилась")
+            print("Кнопка lbl2 существует")
             lbl2.destroy()
-        else:
-            print("Кнопка lbl2 не появилась")
         print(f"xixi {xixi1}")    
-
-def on_enter(e):
-    e.widget['background'] = '#4CAF50'
-def on_leave(e):
-    e.widget['background'] = '#2196F3'
 
 window = Tk()
 style = ttk.Style()
-style.configure("TButton", foreground="white", background="blue", font=("Arial",12), padding=10)
+style.configure("TButton", foreground="black", background="blue", font=("Arial",12), padding=10)
 window.title("Добро пожаловать")
 window.geometry('500x200')
 lbl = Label(window, text="Пример текста", font=("Arial Bold", 15))
@@ -57,9 +50,6 @@ lbl.grid(column=0, row=0)
 # lbl = Label(window, text=list, font=("Arial Bold", 15))
 # lbl.grid(column=0, row=0)
 btn = ttk.Button(window, text="dont push", style="TButton", command=clicked)
-btn.bind('<Enter>', on_enter)
-btn.bind('<Leave>', on_leave)
-# btn.configure(activebackground="#5369B1", relief = FLAT)
 btn.grid(column=2, row=0)
 combo=ttk.Combobox(window)
 combo['values'] = (1,2,3,4,5,"Привет")
@@ -68,6 +58,7 @@ combo.grid(column=1, row=0)
 window.mainloop()
 
 print(person)
+
 
 # answ = input("Хотите ли вы получить все данные: ")
 # if answ == "да":

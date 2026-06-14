@@ -1,0 +1,54 @@
+    1  adduser 
+    2  adduser ceph-adm
+    3  echo "ceph-adm ALL = (root) NOPASSWD:ALL" | tee /etc/sudoers.d/ceph-adm
+    4  pdpl-user -i 63 ceph-adm
+    5  chmod 0440 /etc/sudoers.d/ceph-adm
+    6  rbd map disk1 --name client.admin -m 192.168.100.7 -k /etc/ceph/ceph.client.admin.keyring -p one
+    7  mkdir /mnt/ceph-block-device
+    8  mount /dev/rbd0 /mnt/ceph-block-device/
+    9  ls -l /mnt/ceph-block-device/
+   10  cat /mnt/ceph-block-device/test_from_web1.txt 
+   11  poweroff 
+   12  ip a
+   13  apt install -y pacemaker pcs ceph-resource-agents
+   14  apt install -y apache2 libapache2-mod-php
+   15  systemctl enable apache2
+   16  nano /etc/apache2/sites-available/course-lab.ru.conf
+   17  nano /etc/apache2/apache2.conf 
+   18  a2dissite 000-default.conf
+   19  a2ensite course-lab.ru.conf
+   20  systemctl reload apache2
+   21  apt install -y libapache2-mod-php
+   22  apt install -y ceph-resource-agents
+   23  passwd hacluster
+   24  pcs cluster destroy
+   25  nano /etc/apt/sources.list
+   26  apt update
+   27  pcs cluster stop --all
+   28  apt install -y sbd
+   29  systemctl enable rbdmap.service
+   30  reboot -i
+   31  nano /etc/modules-load.d/modules.conf 
+   32  nano /etc/default/sbd 
+   33  lsmod | grep softdog
+   34  modprobe softdog
+   35  lsmod | grep softdog
+   36  systemctl restart corosync
+   37  apt list bash-completion
+   38  apt install bash-completion
+   39  exit
+   40  apt install -y dlm-controld gfs2-utils
+   41  pcs status
+   42  systemctl status pcsd
+   43  systemctl status pacemaker
+   44  systemctl status corosync
+   45  lsmod | grep softdog
+   46  modprobe softdog
+   47  lsmod | grep softdog
+   48  update-initramfs -u
+   49  apt install ceph-resource-agents
+   50  pcs status
+   51  ls -al /dev/rbd
+   52  history 
+   53  clear
+   54  history

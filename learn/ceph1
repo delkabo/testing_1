@@ -1,0 +1,68 @@
+    1  apt install python ceph-deployad
+    2  adduser ceph-adm
+    3  echo "ceph-adm ALL = (root) NOPASSWD:ALL" | tee /etc/sudoers.d/ceph-adm
+    4  sudo top
+    5  chmod 0440 /etc/sudoers.d/ceph-adm
+    6  pdpl-user -i 63 ceph-adm
+    7  ssh-keygen
+    8  for x in {1..3}; do ssh-copy-id ceph-adm@ceph$x; done
+    9  ceph-deploy ceph-adm install -mgr ceph1
+   10  ceph-deploy --username ceph-adm install --mon --osd ceph1 ceph2 ceph3
+   11  apt update
+   12  apt list --upgradable
+   13  apt install bash-completion
+   14  exit
+   15  ceph-deploy --username ceph-adm install --mgr ceph1
+   16  ceph-deploy --username ceph-adm new ceph1 ceph2 ceph3
+   17  ceph-deploy --username ceph-adm mon create-initial
+   18  ceph-deploy --username ceph-adm mgr create ceph1
+   19  for x in $(seq 3 -1 1); do ssh ceph-adm@ceph$x sudo reboot; done
+   20  ceph-deploy --username ceph-adm osd create --data /dev/vdb ceph1
+   21  ceph-deploy --username ceph-adm osd create --data /dev/vdb ceph2
+   22  ceph-deploy --username ceph-adm osd create --data /dev/vdb ceph3
+   23  ceph-deploy --username ceph-adm install --cli ceph1 ceph2 ceph3
+   24  ceph-deploy --username ceph-adm admin ceph1
+   25  ceph-deploy --username ceph-adm config push ceph1 ceph2 ceph3
+   26  ceph -s
+   27  ceph osd pool create one 128
+   28  ceph osd pool application enable one rbd
+   29  history | grep "(root)"
+   30  history | grep "ssh-copy-id"
+   31  for x in {1..3}; do ssh-copy-id ceph-adm@web$x; done
+   32  ceph-deploy --username ceph-adm admin web1 web2 web3
+   33  ceph-deploy --username ceph-adm install  web1 web2 web3
+   34  ceph-deploy --username ceph-adm admin web1 web2 web3
+   35  poweroff 
+   36  ceph-deploy --username ceph-adm install --mds ceph1
+   37  ceph-deploy --username ceph-adm mds create ceph1
+   38  ceph osd pool create cephfs_data 128
+   39  ceph osd pool create cephfs_metadata 128
+   40  ceph osd pool create cephfs_metadata 128
+   41  ceph osd pool create cephfs_metadata 128
+   42  ceph osd pool create cephfs_metadata 128
+   43  ceph osd pool create cephfs_metadata 128
+   44  ceph osd pool application enable cephfs_metadata
+   45  ceph osd pool application enable cephfs_metadata cephfs
+   46  ceph fs new cephfs cephfs_metadata cephfs_data
+   47  cat ceph.client.admin.keyring | grep key
+   48  mkdir /mnt/cephfs
+   49  mount -t ceph 192.168.100.6,192.168.100.7,192.168.100.8:/ /mnt/cephfs/ -o name=admin,secret=AQB0pElp9UWdEhAABmCAHMg8AwE/3a1g69gRRg==
+   50  mkdir /mnt/cephfs/data1
+   51  ceph auth get-or-create client.client1 mon 'allow r' mds 'allow r,allow rw path=/data1' osd 'allow rw pool=cephfs_data'
+   52  mount -t ceph 192.168.100.6,192.168.100.7,192.168.100.8:/ /mnt -o name=client1,secret='AQB0pElp9UWdEhAABmCAHMg8AwE/3a1g69gRRg=='
+   53  mount -t ceph 192.168.100.6,192.168.100.7,192.168.100.8:/ /mnt -o name=client1,secret=AQB0pElp9UWdEhAABmCAHMg8AwE/3a1g69gRRg==
+   54  ls -l /mnt/cephfs/data1/
+   55  ceph -s
+   56  ip a
+   57  ls -l /mnt/cephfs/data1/mount -t ceph 192.168.100.6,192.168.100.7,192.168.100.8:/ /mnt/cephfs/ -o name=admin,secret=AQB0pElp9UWdEhAABmCAHMg8AwE/3a1g69gRRg==
+   58  ls -l /mnt/cephfs/data1/mount -t ceph 192.168.100.6,192.168.100.7,192.168.100.8:/ /mnt/cephfs/ -o name=admin,secret='AQB0pElp9UWdEhAABmCAHMg8AwE/3a1g69gRRg=='
+   59  mount -t ceph 192.168.100.6,192.168.100.7,192.168.100.8:/ /mnt/cephfs/ -o name=admin,secret='AQB0pElp9UWdEhAABmCAHMg8AwE/3a1g69gRRg=='
+   60  ls -al /mnt/cephfs/data1/
+   61  ceph auth get-or-create client.client1 mon 'allow r' mds 'allow r,allow rw path=/data1' osd 'allow rw pool=cephfs_data'
+   62  mount -t ceph 192.168.100.6,192.168.100.7,192.168.100.8:/ /mnt/cephfs -o name=admin,secret=AQB0pElp9UWdEhAABmCAHMg8AwE/3a1g69gRRg==
+   63  cat ceph.client.admin.keyring | grep key
+   64  ip a
+   65  systemctl status corosync
+   66  clear
+   67  history 
+

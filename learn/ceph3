@@ -1,0 +1,16 @@
+    1  cat .bash_history 
+    2  echo > .bash_history 
+    3  df -Th
+    4  sudo apt autoremove 
+    5  sudo apt autoclean 
+    6  df -Th
+    7  du /var/lib/libvirt/images/
+    8  sudo du /var/lib/libvirt/images/
+    9  sudo du /var/lib/libvirt/images/ -h
+   10  ls -lh /var/lib/libvirt/images/ 
+   11  sudo ls -lh /var/lib/libvirt/images/ 
+   12  sudo apt update 
+   13  ssh astra@ceph2
+   14  clea
+   15  clear
+   16  history 

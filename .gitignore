@@ -4,3 +4,32 @@ losst-vl
 *.vdi
 *.vmdk
 *.box
+*venv/
+*.vmdk
+*dist/*
+# Виртуальные окружения
+venv/
+.venv/
+*venv/*
+env/
+.env/
+.envrc
+
+# Python
+__pycache__/
+.python-version
+dist/
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Тесты
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# Логи
+*.log*

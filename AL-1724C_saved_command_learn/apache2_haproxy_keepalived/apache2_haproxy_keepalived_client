@@ -1,0 +1,90 @@
+    1  exit
+    2  apt list haproxy
+    3  apt install haproxy
+    4  apt purge haproxy
+    5  apt list apache2 libapache2-mod-php
+    6  apt install apache2 libapache2-mod-php
+    7  nano /etc/apache2/sites-available/course-lab.ru.conf
+    8  nano /etc/apache2/apache2.conf 
+    9  mkdir -p /var/www/course-lab.ru/html
+   10  chown -R astra:astra /var/www/course-lab.ru
+   11  chmod -R 755 /var/www/course-lab.ru
+   12  nano /var/www/course-lab.ru/html/hostname.php
+   13  apt install bash-completion
+   14  exit
+   15  systemctl status apache2
+   16  nano /etc/apache2/apache2.conf 
+   17  nano /etc/apache2/sites-available/course-lab.ru.conf 
+   18  systemctl restart apache2
+   19  apache2ctl configtest 
+   20  nano /etc/apache2/sites-available/course-lab.ru.conf 
+   21  systemctl restart apache2
+   22  ls -al /var/www/course-lab.ru/html/hostname.php 
+   23  chown -R astra:astra /var/www/course-lab.ru
+   24  chmod -R 755 /var/www/course-lab.ru
+   25  nano /var/www/course-lab.ru/html/index.html
+   26  nano /etc/apache2/sites-available/course-lab.ru.conf 
+   27  systemctl enable apache2@
+   28  systemctl enable apache2
+   29  systemctl status apache2
+   30  cp /var/www/course-lab.ru/html/hostname.php /var/www/course-lab.ru/
+   31  rm /var/www/course-lab.ru/hostname.php 
+   32  nano /etc/apache2/sites-available/course-lab.ru.conf
+   33  nano /etc/apache2/sites-available/course-lab.ru.conf
+   34  history 
+   35  apache2ctl status 
+   36  nano /etc/apache2/sites-available/course-lab.ru.conf
+   37  a2dissite course-lab.ru.conf
+   38  a2ensite course-lab.ru.conf
+   39  systemctl restart apache2.service 
+   40  apache2ctl status 
+   41  ip a
+   42  apache2ctl status 
+   43  nano /etc/apache2/sites-available/course-lab.ru.conf
+   44  a2ensite course-lab.ru.conf 
+   45  nano /etc/apache2/sites-available/course-lab.ru.conf
+   46* nano /etc/apache2/sites-available/course-lab.ru.conf 
+   47  journalctl -u apache2
+   48  apache2ctl configtest 
+   49  systemctl restart apache2
+   50  journalctl -u apache2
+   51  apache2ctl status 
+   52  cp /var/www/course-lab.ru/html/index.html /var/www/course-lab.ru/
+   53  systemctl restart apache2
+   54  cp /var/www/course-lab.ru/html/index.html /var/www/
+   55  systemctl restart apache2.service 
+   56  systemctl restart apache2
+   57  apt status apache2 libapache2-mod-php
+   58  apt list apache2 libapache2-mod-php
+   59  nano /etc/apache2/sites-available/course-lab.ru.conf
+   60  nano /etc/apache2/apache2.conf 
+   61  systemctl restart apache2
+   62  systemctl enable apache2
+   63  mc /var/www/
+   64  apt install mc
+   65  mc /var/www/
+   66  systemctl enable apache2
+   67  systemctl start apache2
+   68  a2ensite course-lab.ru.conf
+   69* ls -al /var/www/course-lab.ru/html/hostname.php 
+   70  a2dissite 000-default.conf
+   71  systemctl reload apache2
+   72  systemctl status apache2
+   73  systemctl reload apache2
+   74  ip a
+   75  rm /var/www/course-lab.ru/html/index.html 
+   76  systemctl restart apache2
+   77  ls -al /var/www/course-lab.ru/html/
+   78  chmod 644 /var/www/course-lab.ru/html/hostname.php 
+   79  chown root:root /var/www/course-lab.ru/html/hostname.php 
+   80  ls -al /var/www/course-lab.ru/html/
+   81  systemctl restart apache2
+   82  history | grep "a2dissite"
+   83  systemctl status apache2.service 
+   84  sudo nano /etc/apache2/sites-available/course-lab.ru.conf 
+   85  sudo nano /var/log/apache2/error.log 
+   86  nano /var/log/apache2/error.log 
+   87  nano /var/log/apache2/access.log 
+   88  tail -f /var/log/apache2/access.log 
+   89  ip rule list 
+   90  history

@@ -1,0 +1,28 @@
+    1  apt install haproxy -y
+    2  nano /etc/haproxy/haproxy.cfg 
+    3  apt install bash-completion -y
+    4  exit
+    5  systemctl status haproxy.service 
+    6  nano /etc/haproxy/haproxy.cfg 
+    7  systemctl stop haproxy.service 
+    8  systemctl disable haproxy.service 
+    9  poweroff 
+   10  nano /etc/haproxy/haproxy.cfg 
+   11  poweroff 
+   12  sudo apt install keepalived 
+   13  nano /etc/keepalived/keepalived.conf
+   14  systemctl restart haproxy keepalived.service
+   15  systemctl status keepalived.service 
+   16  nano /etc/haproxy/haproxy.cfg 
+   17  systemctl restart haproxy keepalived.service
+   18  nano /etc/haproxy/haproxy.cfg 
+   19  nano /etc/keepalived/keepalived.conf
+   20  systemctl restart haproxy.service 
+   21  systemctl restart keepalived.service 
+   22  nano /etc/keepalived/keepalived.conf
+   23  systemctl restart haproxy.service 
+   24  systemctl restart keepalived.service 
+   25  ip a
+   26  ip a
+   27  clear
+   28  history 
