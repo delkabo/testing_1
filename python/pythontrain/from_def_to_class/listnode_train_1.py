@@ -1,13 +1,13 @@
-class ListPode:
+class ListNode:
     def __init__(self, val=0, xext=None):
         self.val = val
         self.xext = xext
 
 def list_to_linkedlist(arr):
-    dummy = ListPode(0)
+    dummy = ListNode(0)
     current = dummy
     for value in arr:
-        current.next = ListPode(value)
+        current.next = ListNode(value)
         current = current.next
     return dummy.next
 
@@ -36,6 +36,7 @@ def array_to_linkedlist(arr):
         current.next = ListNode(value)
         current = current.next
 
+    print(head)
     return head
 
 # def find_last(head):
@@ -53,7 +54,7 @@ def array_to_linkedlist(arr):
 #     return " <- " .join(reverse) + " <- None"
 
 print(vizualize(list_to_linkedlist(words)))
-
+print(array_to_linkedlist(words))
 print( " -> ".join(words) + " -> None")
 
 var1 = "a"

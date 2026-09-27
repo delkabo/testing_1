@@ -13,7 +13,7 @@ class Cars():
     def cost(self, value):
         if not isinstance(value, (int, float)):
             raise TypeError("value must be is integer or float")
-        self.cost = value
+        self._cost = value
         
 
     @property
@@ -28,7 +28,7 @@ class Cars():
 
     @classmethod
     def get_count(cls):
-        print(cls.count_cars)
+        print(f"count_cls: {cls.count_cars}")
 
     @classmethod
     def reset_count(cls):
@@ -71,3 +71,5 @@ optimus_prime = Trucks("prime", 3000, 8)
 print(optimus_prime.brand)
 optimus_prime.get_count()
 print(optimus_prime.cost)
+optimus_prime.reset_count()
+optimus_prime.get_count()

@@ -7,7 +7,12 @@ Window {
     width: 400
     height: 200
     title: "Связка PySide6 + QML"
-
+    color: '#7870da'  // светлосерый
+    
+    // Или через named color
+    
+    // Или через Qt.rgba() с прозрачностью
+    // color: Qt.rgba(100, 150, 200, 0.8)
 
     Component.onCompleted: {
         if (dataProvider === null) {
@@ -37,6 +42,11 @@ Window {
         Button {
             text: "Обновить текст в Python"
             onClicked: dataProvider.text = inputField.text
+            // color: "white"
+            background: Rectangle {
+                color: "#2196F3"
+                radius: 10
+            }
         }
 
         Button {
