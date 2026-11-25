@@ -10,9 +10,9 @@
     },
     {
       "id": "clean_logs",
-      "title": "Очистка системных логов",
+      "title": "Информация о системе",
       "type": "python",
-      "source": "/opt/my_app/scripts/clean.py",
+      "source": "/opt/admin_tools/sys_info.py",
       "is_local": true
     }
   ]
