@@ -1,0 +1,20 @@
+{
+  "version": "1.2",
+  "items": [
+    {
+      "id": "net_diag",
+      "title": "Диагностика сети",
+      "type": "bash",
+      "source": "http://your-server.local",
+      "is_local": false
+    },
+    {
+      "id": "clean_logs",
+      "title": "Очистка системных логов",
+      "type": "python",
+      "source": "/opt/my_app/scripts/clean.py",
+      "is_local": true
+    }
+  ]
+}
+
